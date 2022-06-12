@@ -56,5 +56,8 @@ public class PageAvito extends PageAbstract {
 		}
 	}
 
+	public void getScreenshot() {
+		takeScreenshot(webdriver().driver().getWebDriver());
+	}
 
 }

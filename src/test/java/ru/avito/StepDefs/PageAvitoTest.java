@@ -2,6 +2,7 @@ package ru.avito.StepDefs;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Пусть;
@@ -17,6 +18,7 @@ public class PageAvitoTest {
 	public void before() {
 		page = new PageAvito();
 		SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
+
 	}
 
 	@Step("В поле поиска ввести значение")
@@ -59,6 +61,12 @@ public class PageAvitoTest {
 	@И("в консоль выведено значение названия и цены {word} первых товаров")
 	public void nameAndPriceOfProduct(String count) {
 		page.nameAndPrice(Integer.parseInt(count));
+	}
+
+	@AfterStep
+	@SuppressWarnings("unused")
+	public void after() {
+		page.getScreenshot();
 	}
 
 	@Before
